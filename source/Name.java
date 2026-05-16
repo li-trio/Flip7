@@ -1,9 +1,7 @@
 package source;
 
 import java.util.ArrayList;
-
 import java.util.Random;
-
 import java.util.Scanner;
 
 public class Name {
@@ -16,11 +14,7 @@ public class Name {
 
         String name = scanner.nextLine();
 
-        System.out.println("Hello " + name + ", do you want to play Flip 7? (yes/no)");
-
-        String antwort = scanner.nextLine();
-
-        if (antwort.equalsIgnoreCase("yes")) {
+        if (askYesOrNo(scanner, "Hello " + name + ", do you want to play Flip 7? (yes/no)")) {
 
             System.out.println("Great, let's play Flip 7 🎰 " + name + "!");
 
@@ -32,57 +26,77 @@ public class Name {
 
             boolean playing = true;
 
-while (playing) {
+            while (playing) {
 
-    System.out.println("Do you want a new card? (yes/no)");
+                if (askYesOrNo(scanner, "Do you want a new card? (yes/no)")) {
 
-    String choice = scanner.nextLine();
+                    int card = random.nextInt(13);
 
-    if (choice.equalsIgnoreCase("yes")) {
+                    System.out.println(name + " drew card: " + card);
 
-        int card = random.nextInt(13);
+                    if (hand.contains(card)) {
 
-        System.out.println(name + " drew card: " + card);
+                        System.out.println(" GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + hand);
 
-        if (hand.contains(card)) {
+                        playing = false;
 
-        System.out.println(" GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + hand);
+                    } else {
 
-            playing = false;
+                        hand.add(card);
+
+                        System.out.println("Your hand: " + hand);
+
+                    }
+
+                } else {
+
+                    playing = false;
+
+                }
+
+            }
+
+            for (int i = 0; i < hand.size(); i++) {
+
+                points += hand.get(i);
+
+            }
+
+            System.out.println("Final hand: " + hand);
+
+            System.out.println("Final points: " + points);
 
         } else {
 
-            hand.add(card);
-
-            System.out.println("Your hand: " + hand);
+            System.out.println("👺Maybe 🐒 later!👹");
 
         }
 
-    } else if (choice.equalsIgnoreCase("no")) {
-
-        playing = false;
-
-    } else {
-
-        System.out.println("Please type yes or no!");
-
     }
 
-}
+    private static boolean askYesOrNo(Scanner scanner, String question) {
 
-for (int i = 0; i < hand.size(); i++) {
+        while (true) {
 
-    points += hand.get(i);
+            System.out.println(question);
 
-}
+            String answer = scanner.nextLine().trim();
 
-System.out.println("Final hand: " + hand);
+            if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
 
-System.out.println("Final points: " + points);
+                return true;
 
-} else {
+            }
 
-    System.out.println("👺Maybe 🐒 later!👹");
-}
-}
+            if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
+
+                return false;
+
+            }
+
+            System.out.println("Please type yes, y, no, or n!");
+
+        }
+
+    }
 }

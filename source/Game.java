@@ -17,11 +17,7 @@ public class Game {
 
         player.name = scanner.nextLine();
 
-        System.out.println("Hello " + player.name + ", do you want to play Flip 7? (yes/no)");
-
-        String antwort = scanner.nextLine();
-
-        if (antwort.equalsIgnoreCase("yes")) {
+        if (askYesOrNo("Hello " + player.name + ", do you want to play Flip 7? (yes/no)")) {
 
             System.out.println("Great, let's play Flip 7 🎰 " + player.name + "!");
 
@@ -29,11 +25,7 @@ public class Game {
 
             while (playing) {
 
-                System.out.println("Do you want to draw a card? (yes/no)");
-
-                String choice = scanner.nextLine();
-
-                if (choice.equalsIgnoreCase("yes")) {
+                if (askYesOrNo("Do you want to draw a card? (yes/no)")) {
 
                     int card = deck.drawCard();
 
@@ -63,13 +55,9 @@ if (player.hand.contains(card)) {
 
                     }
 
-                } else if (choice.equalsIgnoreCase("no")) {
-
-                    playing = false;
-
                 } else {
 
-                    System.out.println("Please type yes or no!");
+                    playing = false;
 
                 }
 
@@ -80,6 +68,32 @@ if (player.hand.contains(card)) {
         } else {
 
             System.out.println("👺Maybe 🐒 later!👹");
+
+        }
+
+    }
+
+    private boolean askYesOrNo(String question) {
+
+        while (true) {
+
+            System.out.println(question);
+
+            String answer = scanner.nextLine().trim();
+
+            if (answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
+
+                return true;
+
+            }
+
+            if (answer.equalsIgnoreCase("no") || answer.equalsIgnoreCase("n")) {
+
+                return false;
+
+            }
+
+            System.out.println("Please type yes, y, no, or n!");
 
         }
 
