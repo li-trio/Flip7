@@ -31,23 +31,23 @@ public class Game {
 
                     System.out.println(player.name + " drew: " + card);
 
-if (player.hand.contains(card)) {
+                    if (player.hand.contains(card)) {
 
-    ArrayList<Integer> tempHand = new ArrayList<>(player.hand);
+                        ArrayList<Integer> tempHand = new ArrayList<>(player.hand);
 
-    tempHand.add(card);
+                        tempHand.add(card);
 
-    System.out.println(
-        "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
-    );
+                        System.out.println(
+                            "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
+                        );
 
-    player.hand.add(card);
+                        player.hand.add(card);
 
-    player.lost = true;
+                        player.lost = true;
 
-    playing = false;
+                        playing = false;
 
-}else {
+                    } else {
 
                         player.hand.add(card);
 
