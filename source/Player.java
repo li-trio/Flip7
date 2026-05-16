@@ -12,4 +12,26 @@ public class Player {
 
     boolean lost = false;
 
+    public Player(String name) {
+        this.name = name;
+    }
+    public Player() {
+    }
+    public void addCard(int card) {
+
+        hand.add(card);
+    }
+    public void calculatePoints() {
+
+        points = 0;
+
+        for (int card : hand) {
+
+            points += card;
+        }
+    }
+    public void showHand() {
+
+        System.out.println("Hand: " + hand);
+    }
 }

@@ -1,13 +1,13 @@
 package source;
 
-import java.util.Random;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
 
     Scanner scanner = new Scanner(System.in);
 
-    Random random = new Random();
+    Deck deck = new Deck();
 
     Player player = new Player();
 
@@ -17,52 +17,100 @@ public class Game {
 
         player.name = scanner.nextLine();
 
-        System.out.println("Welcome " + player.name);
+        if (player.name.equalsIgnoreCase("baccus")) {
 
-        boolean playing = true;
+            player.name = "🌵Baccus🌵 the 🌵CACTUS🌵";
 
-        while (playing) {
+        } else if (player.name.equalsIgnoreCase("dihou")) {
 
-            System.out.println("Do you want to draw a card? (yes/no)");
+            player.name = "Phileas";
 
-            String choice = scanner.nextLine();
+        } else if (player.name.equalsIgnoreCase("phileas")) {
 
-            if (choice.equalsIgnoreCase("yes")) {
+            player.name = "god of the casino, Phileas";
 
-                int card = random.nextInt(13);
+        }
 
-                System.out.println(player.name + " drew: " + card);
+        System.out.println("Hello " + player.name + ", do you want to play Flip 7? (yes/no)");
 
-                if (player.hand.contains(card)) {
+        String antwort = scanner.nextLine();
 
-                    System.out.println(" GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + player.hand);
+        if (antwort.equalsIgnoreCase("yes")) {
 
-                    player.lost = true;
+            System.out.println("Great, let's play Flip 7 🎰 " + player.name + "!");
+
+            boolean playing = true;
+
+            while (playing) {
+
+                System.out.println("Do you want to draw a card? (yes/no)");
+
+                String choice = scanner.nextLine();
+
+                if (choice.equalsIgnoreCase("yes")) {
+
+                    int card = deck.drawCard();
+
+                    System.out.println(player.name + " drew: " + card);
+
+if (player.hand.contains(card)) {
+
+    ArrayList<Integer> tempHand = new ArrayList<>(player.hand);
+
+    tempHand.add(card);
+
+    System.out.println(
+        "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
+    );
+
+    player.hand.add(card);
+
+    player.lost = true;
+
+    playing = false;
+
+}else {
+
+                        player.hand.add(card);
+
+                        System.out.println("Hand: " + player.hand);
+
+                    }
+
+                } else if (choice.equalsIgnoreCase("no")) {
 
                     playing = false;
 
                 } else {
 
-                    player.hand.add(card);
+                    System.out.println("Please type yes or no!");
 
-                    System.out.println("Hand: " + player.hand);
                 }
 
-            } else {
-
-                playing = false;
             }
+
+            calculatePoints();
+
+        } else {
+
+            System.out.println("👺Maybe 🐒 later!👹");
+
         }
 
-        calculatePoints();
     }
 
     public void calculatePoints() {
 
         for (int card : player.hand) {
+
             player.points += card;
+
         }
 
+        System.out.println("Final hand: " + player.hand);
+
         System.out.println("Final points: " + player.points);
+
     }
+
 }
