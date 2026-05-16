@@ -5,21 +5,21 @@ import java.util.Scanner;
 
 public class Game {
 
-    Scanner scanner = new Scanner(System.in);
+    private final Scanner scanner = new Scanner(System.in);
 
-    Deck deck = new Deck();
+    private final Deck deck = new Deck();
 
-    Player player = new Player();
+    private final Player player = new Player();
 
     public void start() {
 
         System.out.println("What is your name?");
 
-        player.name = scanner.nextLine();
+        player.setName(scanner.nextLine());
 
-        if (askYesOrNo("Hello " + player.name + ", do you want to play Flip 7? (yes/no)")) {
+        if (askYesOrNo("Hello " + player.getName() + ", do you want to play Flip 7? (yes/no)")) {
 
-            System.out.println("Great, let's play Flip 7 🎰 " + player.name + "!");
+            System.out.println("Great, let's play Flip 7 🎰 " + player.getName() + "!");
 
             boolean playing = true;
 
@@ -29,13 +29,11 @@ public class Game {
 
                     int card = deck.drawCard();
 
-                    System.out.println(player.name + " drew: " + card);
+                    System.out.println(player.getName() + " drew: " + card);
 
-                    if (player.hand.contains(card)) {
+                    if (player.hasCard(card)) {
 
-                        ArrayList<Integer> tempHand = new ArrayList<>(player.hand);
-
-                        tempHand.add(card);
+                        ArrayList<Integer> tempHand = player.handWithCard(card);
 
                         System.out.println(
                             "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
@@ -43,7 +41,7 @@ public class Game {
 
                         player.addCard(card);
 
-                        player.lost = true;
+                        player.lose();
 
                         playing = false;
 

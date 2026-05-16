@@ -4,18 +4,37 @@ import java.util.ArrayList;
 
 public class Player {
 
-    String name;
+    private String name;
 
-    ArrayList<Integer> hand = new ArrayList<>();
+    private ArrayList<Integer> hand = new ArrayList<>();
 
-    int points = 0;
+    private int points = 0;
 
-    boolean lost = false;
+    private boolean lost = false;
 
     public Player(String name) {
         this.name = name;
     }
     public Player() {
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+    public boolean hasCard(int card) {
+        return hand.contains(card);
+    }
+    public ArrayList<Integer> handWithCard(int card) {
+        ArrayList<Integer> tempHand = new ArrayList<>(hand);
+
+        tempHand.add(card);
+
+        return tempHand;
+    }
+    public void lose() {
+        lost = true;
     }
     public void addCard(int card) {
 
