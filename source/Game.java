@@ -41,7 +41,7 @@ public class Game {
                             "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
                         );
 
-                        player.hand.add(card);
+                        player.addCard(card);
 
                         player.lost = true;
 
@@ -49,9 +49,9 @@ public class Game {
 
                     } else {
 
-                        player.hand.add(card);
+                        player.addCard(card);
 
-                        System.out.println("Hand: " + player.hand);
+                        player.showHand();
 
                     }
 
@@ -101,11 +101,7 @@ public class Game {
 
     public void calculatePoints() {
 
-        for (int card : player.hand) {
-
-            player.points += card;
-
-        }
+        player.calculatePoints();
 
         System.out.println("Final hand: " + player.hand);
 
