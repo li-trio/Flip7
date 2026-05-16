@@ -16,20 +16,6 @@ public class Name {
 
         String name = scanner.nextLine();
 
-        if (name.equalsIgnoreCase("baccus")) {
-
-            name = "🌵Baccus🌵 the 🌵CACTUS🌵";
-
-        } else if (name.equalsIgnoreCase("dihou")) {
-
-            name = "Phileas";
-
-        } else if (name.equalsIgnoreCase("phileas")) {
-
-            name = "god of the casino, Phileas";
-
-        }
-
         System.out.println("Hello " + name + ", do you want to play Flip 7? (yes/no)");
 
         String antwort = scanner.nextLine();

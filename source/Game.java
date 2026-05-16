@@ -17,20 +17,6 @@ public class Game {
 
         player.name = scanner.nextLine();
 
-        if (player.name.equalsIgnoreCase("baccus")) {
-
-            player.name = "🌵Baccus🌵 the 🌵CACTUS🌵";
-
-        } else if (player.name.equalsIgnoreCase("dihou")) {
-
-            player.name = "Phileas";
-
-        } else if (player.name.equalsIgnoreCase("phileas")) {
-
-            player.name = "god of the casino, Phileas";
-
-        }
-
         System.out.println("Hello " + player.name + ", do you want to play Flip 7? (yes/no)");
 
         String antwort = scanner.nextLine();
