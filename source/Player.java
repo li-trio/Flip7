@@ -34,4 +34,12 @@ public class Player {
 
         System.out.println("Hand: " + hand);
     }
+    public void showFinalScore() {
+
+        calculatePoints();
+
+        System.out.println("Final hand: " + hand);
+
+        System.out.println("Final points: " + points);
+    }
 }

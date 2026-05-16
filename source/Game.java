@@ -63,7 +63,7 @@ public class Game {
 
             }
 
-            calculatePoints();
+            player.showFinalScore();
 
         } else {
 
@@ -96,16 +96,6 @@ public class Game {
             System.out.println("Please type yes, y, no, or n!");
 
         }
-
-    }
-
-    public void calculatePoints() {
-
-        player.calculatePoints();
-
-        System.out.println("Final hand: " + player.hand);
-
-        System.out.println("Final points: " + player.points);
 
     }
 
