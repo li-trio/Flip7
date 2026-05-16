@@ -31,9 +31,9 @@ public class CardRenderer {
         for (int card : cards) {
             boolean highlighted = highlightedCard != null && card == highlightedCard;
 
-            top.append("+----+ ");
-            middle.append("| ").append(formatCardNumber(card, highlighted)).append(" | ");
-            bottom.append("+----+ ");
+            top.append("┌────┐ ");
+            middle.append("│ ").append(formatCardNumber(card, highlighted)).append(" │ ");
+            bottom.append("└────┘ ");
         }
 
         return top.toString().stripTrailing()

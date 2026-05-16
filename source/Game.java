@@ -1,6 +1,5 @@
 package source;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
@@ -35,7 +34,7 @@ public class Game {
 
                     if (player.hasCard(card)) {
 
-                        ArrayList<Integer> tempHand = player.handWithCard(card);
+                        java.util.List<Integer> tempHand = player.handWithCard(card);
 
                         System.out.println("GAME OVER😢!💥You 💣 lost!💥 You have a card doubled:");
                         System.out.println(CardRenderer.renderHandWithDuplicate(tempHand));
@@ -90,13 +89,13 @@ public class Game {
             System.out.println(CardRenderer.renderHandWithDuplicate(player.getHand()));
             System.out.println();
             System.out.println("Final points: null");
-            System.out.println("You could have reached " + player.calculatePointsBeforeLastCard() + " points before the duplicated card, but you exploded.");
+            System.out.println("You could have reached " + player.getPointsBeforeLastCard() + " points before the duplicated card, but you exploded.");
             return;
         }
 
         System.out.println(CardRenderer.renderHand(player.getHand()));
         System.out.println();
-        System.out.println("Final points: " + player.calculatePoints());
+        System.out.println("Final points: " + player.getPoints());
 
     }
 
