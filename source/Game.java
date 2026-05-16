@@ -19,6 +19,7 @@ public class Game {
 
         if (askYesOrNo("Hello " + player.getName() + ", do you want to play Flip 7? (yes/no)")) {
 
+            System.out.println();
             System.out.println("Great, let's play Flip 7 🎰 " + player.getName() + "!");
 
             boolean playing = true;
@@ -29,15 +30,15 @@ public class Game {
 
                     int card = deck.drawCard();
 
+                    System.out.println();
                     System.out.println(player.getName() + " drew: " + card);
 
                     if (player.hasCard(card)) {
 
                         ArrayList<Integer> tempHand = player.handWithCard(card);
 
-                        System.out.println(
-                            "GAME OVER😢!💥You 💣 lost!💥 You have a card doubled: " + tempHand
-                        );
+                        System.out.println("GAME OVER😢!💥You 💣 lost!💥 You have a card doubled:");
+                        System.out.println(CardRenderer.renderHandWithDuplicate(tempHand));
 
                         player.addCard(card);
 
@@ -49,7 +50,7 @@ public class Game {
 
                         player.addCard(card);
 
-                        player.showHand();
+                        showHand();
 
                     }
 
@@ -61,13 +62,41 @@ public class Game {
 
             }
 
-            player.showFinalScore();
+            showFinalScore();
 
         } else {
 
+            System.out.println();
             System.out.println("👺Maybe 🐒 later!👹");
 
         }
+
+    }
+
+    private void showHand() {
+
+        System.out.println();
+        System.out.println("Hand:");
+        System.out.println(CardRenderer.renderHand(player.getHand()));
+
+    }
+
+    private void showFinalScore() {
+
+        System.out.println();
+        System.out.println("Final hand:");
+
+        if (player.isLost()) {
+            System.out.println(CardRenderer.renderHandWithDuplicate(player.getHand()));
+            System.out.println();
+            System.out.println("Final points: null");
+            System.out.println("You could have reached " + player.calculatePointsBeforeLastCard() + " points before the duplicated card, but you exploded.");
+            return;
+        }
+
+        System.out.println(CardRenderer.renderHand(player.getHand()));
+        System.out.println();
+        System.out.println("Final points: " + player.calculatePoints());
 
     }
 
@@ -75,6 +104,7 @@ public class Game {
 
         while (true) {
 
+            System.out.println();
             System.out.println(question);
 
             String answer = scanner.nextLine().trim();
@@ -91,6 +121,7 @@ public class Game {
 
             }
 
+            System.out.println();
             System.out.println("Please type yes, y, no, or n!");
 
         }

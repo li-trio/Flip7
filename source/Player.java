@@ -1,14 +1,13 @@
 package source;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
 
     private String name;
 
-    private ArrayList<Integer> hand = new ArrayList<>();
-
-    private int points = 0;
+    private final ArrayList<Integer> hand = new ArrayList<>();
 
     private boolean lost = false;
 
@@ -22,6 +21,12 @@ public class Player {
     }
     public String getName() {
         return name;
+    }
+    public List<Integer> getHand() {
+        return hand;
+    }
+    public boolean isLost() {
+        return lost;
     }
     public boolean hasCard(int card) {
         return hand.contains(card);
@@ -40,25 +45,26 @@ public class Player {
 
         hand.add(card);
     }
-    public void calculatePoints() {
+    public int calculatePoints() {
 
-        points = 0;
+        int total = 0;
 
         for (int card : hand) {
 
-            points += card;
+            total += card;
         }
+
+        return total;
     }
-    public void showHand() {
+    public int calculatePointsBeforeLastCard() {
 
-        System.out.println("Hand: " + hand);
-    }
-    public void showFinalScore() {
+        int total = 0;
 
-        calculatePoints();
+        for (int i = 0; i < hand.size() - 1; i++) {
 
-        System.out.println("Final hand: " + hand);
+            total += hand.get(i);
+        }
 
-        System.out.println("Final points: " + points);
+        return total;
     }
 }
